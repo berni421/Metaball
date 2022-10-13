@@ -16,11 +16,11 @@ public class MainActivity extends OptionsMenu {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "start onCreate");
         setContentView(R.layout.activity_main);
-        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        Log.i(TAG, "navHostFragment: " + navHostFragment);
-        NavController navController = navHostFragment.getNavController();
-        Log.i(TAG, "navController: " + navController);
-        navController.navigate(R.id.disclaimerFragment);
+//        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+//        Log.i(TAG, "navHostFragment: " + navHostFragment);
+//        NavController navController = navHostFragment.getNavController();
+//        Log.i(TAG, "navController: " + navController);
+//        navController.navigate(R.id.disclaimerFragment);
         Log.i(TAG, "start onCreate");
     }
 

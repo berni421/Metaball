@@ -24,19 +24,49 @@ public class WebviewFragment extends Fragment {
     static String APP = BuildConfig.APPLICATION_ID;
     static String TAG = "WebviewFragment";
     WebView myWebView;
+    View view = null;
     String assetUrl = "https://appassets.androidplatform.net/assets/website/index.html";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = null;
         view = inflater.inflate(R.layout.fragment_webview, container, false);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.i(TAG, "start onViewCreated");
+        startWebView(view);
+
+        Log.i(TAG, "end onViewCreated");
+    }
+
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        Log.i(TAG, "start onResume");
+//        startAnimation();
+//        Log.i(TAG, "end onResume");
+//    }
+
+//    void startAnimation() {
+//        Log.i(TAG, "start startAnamation");
+//        // Sadly navigation based animation does not work if Intro is hidden
+//        Animation animRotateIn = AnimationUtils.loadAnimation(getContext(), R.anim.rotate_in);
+//        view.startAnimation(animRotateIn);
+//        Log.i(TAG, "end startAnamation");
+//    }
+
+    void startWebView(View view) {
+        Log.i(TAG, "start startWebView");
         Context context = getContext();
-        String msg = "Loading twisted .. please wait.";
+        String msg = "Loading .. please wait.";
         Log.i(TAG, "msg: " + msg);
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
-        myWebView = (WebView) view.findViewById(R.id.webview);
+        WebView myWebView = (WebView) view.findViewById(R.id.webview);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
@@ -58,6 +88,6 @@ public class WebviewFragment extends Fragment {
             }
         });
         myWebView.loadUrl(assetUrl);
-        return view;
+        Log.i(TAG, "end startWebView");
     }
 }
