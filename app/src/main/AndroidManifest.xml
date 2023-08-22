@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/metaball_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Metaball"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name=".MainActivity"
             android:exported="true">

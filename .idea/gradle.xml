@@ -9,8 +9,8 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="$USER_HOME$/Dropbox/Documents/AndroidStudioProjects/Metaball" />
-            <option value="$USER_HOME$/Dropbox/Documents/AndroidStudioProjects/Metaball/app" />
+            <option value="$USER_HOME$/Documents/AndroidStudioProjects/Metaball" />
+            <option value="$USER_HOME$/Documents/AndroidStudioProjects/Metaball/app" />
           </set>
         </option>
       </GradleProjectSettings>
