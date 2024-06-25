@@ -1,6 +1,7 @@
 package com.elbourn.android.metaball;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.content.ClipData;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import java.util.List;
 import java.util.function.IntToDoubleFunction;
 
 public class OptionsMenu extends AppCompatActivity {
@@ -49,7 +51,7 @@ public class OptionsMenu extends AppCompatActivity {
                 startDonationWebsite();
                 return true;
                 case R.id.restart:
-                restartApp();
+                restartWebviewFragment();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -79,17 +81,23 @@ public class OptionsMenu extends AppCompatActivity {
         Log.i(TAG, "end startDonationWebsite");
     }
 
-    void restartApp() {
-        Log.i(TAG, "start restartApp");
-//        Context context = getApplicationContext();
-//        Intent intent = new Intent(context, MainActivity.class);
-//        startActivity(intent);
-//        finishAffinity();
-        Context ctx = getApplicationContext();
-        PackageManager pm = ctx.getPackageManager();
-        Intent intent = pm.getLaunchIntentForPackage(ctx.getPackageName());
-        Intent mainIntent = Intent.makeRestartActivityTask(intent.getComponent());
-        ctx.startActivity(mainIntent);
-        Runtime.getRuntime().exit(0);
+    void restartWebviewFragment() {
+        Log.i(TAG, "start restartWebviewFragment");
+        Fragment nHF = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        Log.i(TAG, "nHf: " + nHF);
+        if (nHF == null) return;
+        List<Fragment> fs = nHF.getChildFragmentManager().getFragments();
+        Log.i(TAG, "fs: " + fs);
+        for (Fragment f : fs) {
+            Log.i(TAG, "f: " + f);
+            if (f.getClass() != WebviewFragment.class) return;
+            nHF.getChildFragmentManager().beginTransaction()
+                    .setReorderingAllowed(true)
+                    .remove(f)
+                    .commit();
+            nHF.getChildFragmentManager().beginTransaction()
+                    .add(f, null)
+                    .commit();
+        }
     }
 }
